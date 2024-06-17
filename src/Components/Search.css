@@ -1,0 +1,29 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.search-div {
+  margin: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.search-div input {
+  width: 90%;
+  /* height: 35px; */
+  font-size: large;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+.search-div button {
+  border-radius: 10px;
+  cursor: pointer;
+  width: 5%;
+  padding: 12px 0;
+  background-color: transparent;
+  font-weight: bolder;
+}
