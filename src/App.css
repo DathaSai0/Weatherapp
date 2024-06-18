@@ -7,13 +7,12 @@ body {
   background-repeat: no-repeat; */
   background-color: #a7e6ff;
 }
-/* toastStyles.css */
 .custom-toast {
-  font-size: 14px; /* Adjust font size */
-  padding: 10px; /* Adjust padding */
-  border-radius: 5px; /* Adjust border radius */
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .custom-toast-container {
-  width: 300px; /* Adjust width */
+  width: 300px;
 }
