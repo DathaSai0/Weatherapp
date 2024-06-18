@@ -50,7 +50,9 @@ function Search() {
         />
         <button onClick={cityValidation}>Search</button>
       </div>
-      {cityErr && <p style={{ color: "red" }}>{cityErr}</p>}
+      {cityErr && (
+        <p style={{ color: "red", textAlign: "center" }}>{cityErr}</p>
+      )}
     </>
   );
 }
