@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { context } from "../App";
 import "./FavouriteCities.css";
+import { useNavigate } from "react-router-dom";
 
 function FavouriteCities() {
+  const navigate = useNavigate();
   let date = new Date().toString();
   const [favcityWeather, setfavcityWeather] = useState([]);
   const { favouriteCitiesdata, API_KEY, setfavouriteCities } =
@@ -107,46 +109,57 @@ function FavouriteCities() {
       console.error("Error updating city name:", error);
     }
   };
+  function backfunc() {
+    navigate("/");
+  }
+  if (favcityWeather.length === 0) {
+    return <h1>loading...!</h1>;
+  }
 
   return (
-    <div className="favourite-city-div">
-      <h1 style={{ textAlign: "center", marginBottom: "50px" }}>
-        Favourite Cities Weather Details
-      </h1>
-      {favcityWeather.map((data, index) => (
-        <div key={index} className="fav-weather-container">
-          <h3>{data.name}</h3>
-          <p>{date.slice(0, 10)}</p>
-          <h3>
-            {Math.floor(data.main.temp - 273)}
-            <sup>o</sup>C
-          </h3>
-          <div className="favCitiesBtns">
-            <button onClick={() => updateCityName(data.id)}>Update</button>
-            <button onClick={() => deleteFunction(data.id)}>Delete</button>
+    <>
+      <button onClick={backfunc} className="Back-btn">
+        Back
+      </button>
+      <div className="favourite-city-div">
+        <h1 style={{ textAlign: "center", marginBottom: "50px" }}>
+          Favourite Cities Weather Details
+        </h1>
+        {favcityWeather.map((data, index) => (
+          <div key={index} className="fav-weather-container">
+            <h3 className="fav-name">{data.name}</h3>
+            <p>{date.slice(0, 10)}</p>
+            <h3>
+              {Math.floor(data.main.temp - 273)}
+              <sup>o</sup>C
+            </h3>
+            <div className="favCitiesBtns">
+              <button onClick={() => updateCityName(data.id)}>Update</button>
+              <button onClick={() => deleteFunction(data.id)}>Delete</button>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
 
-      {showUpdatePopup && (
-        <div className="update-popup">
-          <div className="popup-content">
-            <h3>Update City Name</h3>
-            <input
-              type="text"
-              value={newCityName}
-              onChange={(e) => setNewCityName(e.target.value)}
-              placeholder="Enter new city name"
-            />
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
-            <button onClick={handleUpdateSubmit} disabled={!newCityName}>
-              Submit
-            </button>
-            <button onClick={() => setShowUpdatePopup(false)}>Cancel</button>
+        {showUpdatePopup && (
+          <div className="update-popup">
+            <div className="popup-content">
+              <h3>Update City Name</h3>
+              <input
+                type="text"
+                value={newCityName}
+                onChange={(e) => setNewCityName(e.target.value)}
+                placeholder="Enter new city name"
+              />
+              {errorMessage && <p className="error-message">{errorMessage}</p>}
+              <button onClick={handleUpdateSubmit} disabled={!newCityName}>
+                Submit
+              </button>
+              <button onClick={() => setShowUpdatePopup(false)}>Cancel</button>
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 }
 

@@ -14,3 +14,6 @@
   font-weight: bold;
   font-size: large;
 }
+.favourites-div button:hover {
+  background-color: aqua;
+}

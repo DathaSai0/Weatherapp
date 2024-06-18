@@ -4,6 +4,8 @@ import "./WeatherDashboard.css";
 import WeatherAndForecast from "./WeatherAndForecast";
 import { useNavigate } from "react-router-dom";
 import { context } from "../App";
+import { toast } from "react-toastify";
+
 function WeatherDashboard() {
   const {
     city,
@@ -15,7 +17,9 @@ function WeatherDashboard() {
     favouriteCitiesdata,
     setfavouriteCities,
   } = useContext(context);
+
   const navigate = useNavigate();
+
   const addToFavourites = async () => {
     try {
       if (
@@ -23,7 +27,7 @@ function WeatherDashboard() {
           (fav) => fav.city.toLowerCase() === city.toLowerCase()
         )
       ) {
-        alert("City is already in favourites");
+        toast.info("City is already in favourites");
         return;
       }
 
@@ -40,23 +44,26 @@ function WeatherDashboard() {
           }),
         }
       );
-
+      console.log(res.ok);
       if (res.ok) {
         const newFavourite = await res.json();
         setfavouriteCities([...favouriteCitiesdata, newFavourite]);
-        alert("city is added to favourite lists");
+        toast.success("City is added to favourite lists");
       } else {
         console.error("Failed to add to favourites:", res.statusText);
+        toast.error("Failed to add city to favourites");
       }
     } catch (error) {
       console.error("Error in addToFavourites:", error);
+      toast.error("An error occurred while adding city to favourites");
     }
   };
+
   return (
     <div>
       <div className="Top-div">
-        <h1>Weather </h1>
-        <div>
+        <h1>Weather</h1>
+        <div className="favourites-div">
           <button onClick={addToFavourites} style={{ marginRight: "5px" }}>
             Add to Favourites
           </button>

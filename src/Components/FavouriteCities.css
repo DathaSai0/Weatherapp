@@ -77,3 +77,21 @@
 .error-message {
   color: red;
 }
+.favCitiesBtns button:hover {
+  background-color: aqua;
+}
+.Back-btn:hover {
+  background-color: aqua;
+}
+.Back-btn {
+  background: transparent;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: 50px;
+}
+.fav-name {
+  width: 100px;
+}

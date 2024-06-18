@@ -4,6 +4,9 @@ import WeatherDashboard from "./Components/WeatherDashboard";
 import { createContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import FavouriteCities from "./Components/FavouriteCities";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export const context = createContext();
 
 function App() {
@@ -14,6 +17,7 @@ function App() {
   const [currentDayWeatherData, setcurrentDayWeatherData] = useState(null);
   const [weeklyWeatherData, setWeeklyWeatherData] = useState([]);
   const API_KEY = "3dda862b68989ef1dd87c929cb493640";
+
   //To get the live location
   useEffect(() => {
     fetch("http://ip-api.com/json")
@@ -26,6 +30,7 @@ function App() {
         console.log(err);
       });
   }, []);
+
   return (
     <>
       <context.Provider
@@ -50,6 +55,11 @@ function App() {
             <Route path="/" element={<WeatherDashboard />} />
             <Route path="/favourites" element={<FavouriteCities />} />
           </Routes>
+          <ToastContainer
+            position="top-right"
+            toastClassName="custom-toast" // Apply custom class to toasts
+            className="custom-toast-container" // Apply custom class to container
+          />
         </BrowserRouter>
       </context.Provider>
     </>

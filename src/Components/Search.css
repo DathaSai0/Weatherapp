@@ -27,3 +27,13 @@
   background-color: transparent;
   font-weight: bolder;
 }
+.search-div button:hover {
+  background-color: aqua;
+}
+.img-location {
+  background: transparent;
+  width: 35px;
+  cursor: pointer;
+  border-radius: 5px;
+  mix-blend-mode: multiply;
+}

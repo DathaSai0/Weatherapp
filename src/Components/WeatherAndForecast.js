@@ -58,44 +58,6 @@ function WeatherAndForecast() {
       console.log(err);
     }
   };
-
-  // const addToFavourites = async () => {
-  //   try {
-  //     if (
-  //       favouriteCitiesdata.some(
-  //         (fav) => fav.city.toLowerCase() === city.toLowerCase()
-  //       )
-  //     ) {
-  //       alert("City is already in favourites");
-  //       return;
-  //     }
-
-  //     const res = await fetch(
-  //       "https://weatherdata-zjsc.onrender.com/FavouriteCities",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           id: String(favouriteCitiesdata.length + 1),
-  //           city: city,
-  //         }),
-  //       }
-  //     );
-
-  //     if (res.ok) {
-  //       const newFavourite = await res.json();
-  //       setfavouriteCities([...favouriteCitiesdata, newFavourite]);
-  //       alert("city is added to favourite lists");
-  //     } else {
-  //       console.error("Failed to add to favourites:", res.statusText);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error in addToFavourites:", error);
-  //   }
-  // };
-
   return (
     <>
       <div className="weather-forecast-container">
@@ -104,7 +66,6 @@ function WeatherAndForecast() {
             <div className="current-weather">
               <div className="weather-div">
                 <h1>CURRENT WEATHER</h1>
-                {/* <button onClick={addToFavourites}>Add to Favourites</button> */}
               </div>
               <div className="weather-details">
                 <div>
@@ -164,8 +125,10 @@ function WeatherAndForecast() {
               </div>
             </div>
           </div>
+        ) : currentDayWeatherData ? (
+          <h1 style={{ textAlign: "center" }}>Please enter the valid city</h1>
         ) : (
-          <h1 style={{ textAlign: "center" }}>Please Enter the valid city</h1>
+          <h1 style={{ textAlign: "center" }}>Loading...!</h1>
         )}
         <div className="forecast-container">
           <h1>WEEKLY FORECAST</h1>
